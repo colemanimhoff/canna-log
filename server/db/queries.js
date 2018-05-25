@@ -6,5 +6,8 @@ module.exports = {
     },
     getOne(id) {
         return knex('cannabaceae').where('id', id).first()
+    },
+    create(cannabis) {
+        return knex('cannabaceae').insert(cannabis, '*')
     }
 }
