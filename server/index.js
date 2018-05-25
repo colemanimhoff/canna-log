@@ -5,12 +5,14 @@ const cors        = require('cors')
 const app         = module.exports = express()
 const port        = parseInt(process.env.PORT || 3000)
 
+const cannabaceae = require('./api/cannabaceae')
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'))
 app.use(cors({origin: true, credentials: true}))
 
-//put api route here
+app.use('/api/v1/cannalog', cannabaceae)
 
 app.use(notFound)
 app.use(errorHandler)
