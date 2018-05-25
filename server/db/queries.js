@@ -12,5 +12,8 @@ module.exports = {
     },
     update(id, cannabis) {
         return knex('cannabaceae').where('id', id).update(cannabis, '*')
+    },
+    delete(id) {
+        return knex('cannabaceae').where('id', id).delete()
     }
 }

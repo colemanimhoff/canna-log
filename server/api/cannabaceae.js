@@ -33,14 +33,22 @@ router.post('/', (request, response, next) => {
     validCannacaceae(request.body)
     ? queries.create(request.body)
         .then(cannabaceae => response.json(cannabaceae[0]))
-    : next(new Error('Invalid Post'))
+    : next(new Error('Invalid Entry'))
 })
 
 router.put('/:id', isValidId, (request, response, next) => {
     validCannacaceae(request.body)
     ? queries.update(request.params.id, request.body)
         .then(cannabaceae => response.json(cannabaceae[0]))
-    : next(new Error('Invalid Post'))
+    : next(new Error('Invalid Entry'))
+})
+
+router.delete('/:id', isValidId, (request, response) => {
+    queries.delete(request.params.id).then(() => {
+        response.json({
+            message: 'Entry Deleted!'
+        })
+    })
 })
 
 module.exports = router
