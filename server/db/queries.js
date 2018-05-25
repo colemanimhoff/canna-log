@@ -9,5 +9,8 @@ module.exports = {
     },
     create(cannabis) {
         return knex('cannabaceae').insert(cannabis, '*')
+    },
+    update(id, cannabis) {
+        return knex('cannabaceae').where('id', id).update(cannabis, '*')
     }
 }

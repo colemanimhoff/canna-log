@@ -36,4 +36,11 @@ router.post('/', (request, response, next) => {
     : next(new Error('Invalid Post'))
 })
 
+router.put('/:id', isValidId, (request, response, next) => {
+    validCannacaceae(request.body)
+    ? queries.update(request.params.id, request.body)
+        .then(cannabaceae => response.json(cannabaceae[0]))
+    : next(new Error('Invalid Post'))
+})
+
 module.exports = router
